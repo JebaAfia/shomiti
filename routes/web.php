@@ -24,3 +24,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/loan-insert', [LoanController::class, 'index'])->name('loan-insert');
 Route::post('/loan-insert', [LoanController::class, 'store']);
+Route::get('/loans', [LoanController::class, 'loans'])->name('loans');
