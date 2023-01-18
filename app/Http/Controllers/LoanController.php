@@ -15,10 +15,11 @@ class LoanController extends Controller
         ];
         return view('loans.loan-insert', $data);
     }
+
     public function store(Request $request)
     {
         $loan = Loan::create([
-            'name' => $request['name'],
+            'user_id' => $request['user_id'],
             'amount' => $request['amount'],
             'interest_rate' => $request['interest_rate'],
             'frequency' => $request['frequency'],
@@ -26,11 +27,13 @@ class LoanController extends Controller
             'handover_date' => $request['handover_date'],
             'granter_name' => $request['granter_name'],
         ]);
-
-        return redirect('loans')->with( ['name' => $request['name']]);
+        
+        return redirect('loans')->with('user_name', User::find($request['user_id'])->name);
     }
 
     public function loans(){
-        return view('loans.loans');
+        $data= Loan::all();
+        // print_r($data);
+        return view('loans.loans', ['loans'=>$data]);
     }
 }
