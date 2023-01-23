@@ -32,8 +32,13 @@ class LoanController extends Controller
     }
 
     public function loans(){
-        $data= Loan::all();
-        // print_r($data);
-        return view('loans.loans', ['loans'=>$data]);
+        $loans = Loan::with('user:id,name')->get();
+        return view('loans.loans', ['loans'=>$loans]);
+    }
+
+    public function delete($id){
+        $data = Loan::find($id);
+        $data->delete();
+        return redirect('loans');
     }
 }

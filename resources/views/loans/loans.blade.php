@@ -16,14 +16,19 @@
                             <th>Interest Rate</th>
                             <th>Frequency</th>
                             <th>Starting Date</th>
+                            <th>Action</th>
                         </tr>
                     @foreach($loans as $loan)
                         <tr> 
-                            <th>{{$loan['user_id']}}</th>
+                            <th>{{$loan->user->name}}</th>
                             <th>{{$loan['amount']}}</th>
                             <th>{{$loan['interest_rate']}}</th>
                             <th>{{$loan['frequency']}}</th>
                             <th>{{$loan['start_date']}}</th>                
+                            <th>
+                                <a href={{"edit/".$loan['id']}}>EDIT</a>
+                                <a href={{"delete/".$loan['id']}}>DELETE</a>
+                            </th>                
                         </tr>
                     @endforeach
                 </table>

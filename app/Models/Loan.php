@@ -18,4 +18,8 @@ class Loan extends Model
         'granter_name',
     ];
 
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
 }
