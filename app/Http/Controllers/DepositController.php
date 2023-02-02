@@ -2,38 +2,37 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Loan;
+use App\Models\Deposit;
 use App\Models\User;
+use App\Models\Loan;
 use Illuminate\Http\Request;
 
-class LoanController extends Controller
+class DepositController extends Controller
 {
-    public function index(){ 
-        $users = User::all(['id', 'name']); //fetch data from db users table
+    public function index($id = null){ 
+        $loans = Loan::with('user:id,name')->get(); //fetch data from db users table
+ 
         $data = [
-            'users' => $users
+            'loans' => $loans,
+            'loan_id' => $id
         ];
-        return view('loans.loan-insert', $data);
+        return view('deposits.deposit-insert', $data);
     }
 
     public function store(Request $request)
     {
-        $loan = Loan::create([
-            'user_id' => $request['user_id'],
-            'amount' => $request['amount'],
-            'interest_rate' => $request['interest_rate'],
-            'frequency' => $request['frequency'],
-            'start_date' => $request['start_date'],
-            'handover_date' => $request['handover_date'],
-            'granter_name' => $request['granter_name'],
+        $deposit = Deposit::create([
+            'loan_id' => $request['loan_id'],
+            'instalment_date' => $request['instalment_date'],
+            'instalment_rate' => $request['instalment_rate'],
         ]);
         
-        return redirect('loans')->with('user_name', User::find($request['user_id'])->name);
+        return redirect('deposits');
     }
 
-    public function loans(){
-        $loans = Loan::with('user:id,name')->get();
-        return view('loans.loans', ['loans'=>$loans]);
+    public function deposits(){
+        $deposits = Deposit::with('loan:id')->get();
+        return view('deposits.deposits', ['deposits'=>$deposits]);
     }
 
     public function delete($id){
