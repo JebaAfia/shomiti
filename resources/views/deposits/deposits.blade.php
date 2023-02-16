@@ -1,34 +1,30 @@
-{{-- @extends('layouts.app')
+@extends('layouts.app')
 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('LOANS') }}</div>
+                <div class="card-header">{{ __('DEPOSITS') }}</div>
                 @if (Session::get('user_name'))
-                    Loan is given to {{ Session::get('user_name') }}
+                    Deposit is taken from {{ Session::get('user_name') }}
                 @endif  
                 <table>
                         <tr>
                             <th>User Name</th>
-                            <th>Amount</th>
-                            <th>Interest Rate</th>
-                            <th>Frequency</th>
-                            <th>Starting Date</th>
-                            <th>Action</th>
+                            <th>Instalment Date</th>
+                            <th>Instalment Rate</th>
                         </tr>
-                    @foreach($loans as $loan)
+                    @foreach($deposits as $deposit)
+
+                        <?php// $deposit = (array) $deposit;?>
                         <tr> 
-                            <th>{{$loan->user->name}}</th>
-                            <th>{{$loan['amount']}}</th>
-                            <th>{{$loan['interest_rate']}}</th>
-                            <th>{{$loan['frequency']}}</th>
-                            <th>{{$loan['start_date']}}</th>                
+                            <th>{{ $deposit->name }}</th>
+                            <th>{{ $deposit->instalment_date }}</th>
+                            <th>{{ $deposit->instalment_rate }}</th>             
                             <th>
-                                <a href={{"loan/edit/".$loan['id']}}>EDIT</a>
-                                <a href={{"loan/delete/".$loan['id']}}>DELETE</a>
-                                <a href={{"deposit/insert/".$loan['id']}}>DEPOSIT</a>
+                                <a href={{ "deposit/edit/".$deposit->id }}>EDIT</a>
+                                <a href={{ "deposit/delete/".$deposit->id }}>DELETE</a>
                             </th>                
                         </tr>
                     @endforeach
@@ -37,4 +33,4 @@
         </div>
     </div>
 </div>
-@endsection --}}
+@endsection

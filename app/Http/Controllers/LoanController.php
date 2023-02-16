@@ -33,7 +33,8 @@ class LoanController extends Controller
 
     public function loans(){
         $loans = Loan::with('user:id,name')->get();
-        return view('loans.loans', ['loans'=>$loans]);
+        
+        return view('loans.loans', [ 'loans' => $loans ]);
     }
 
     public function delete($id){

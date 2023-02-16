@@ -18,4 +18,8 @@ class Deposit extends Model
         return $this->belongsTo(Loan::class);
     }
 
+    // public function user(){
+    //     return $this->hasManyThrough(Loan::class, User::class, 'loan_id', 'param');
+    // }
+
 }

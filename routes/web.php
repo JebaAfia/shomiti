@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoanController;
 use App\Http\Controllers\DepositController;
 use Illuminate\Support\Facades\Route;
@@ -12,6 +13,10 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('/users', [UserController::class, 'users'])->name('users');
+Route::get('/user/delete/{id}', [UserController::class, 'delete']);
+Route::get('/user/edit/{id}', [UserController::class, 'showName']);
+Route::post('/user/update', [UserController::class, 'update'])->name('user-update');
 
 Route::get('/loans', [LoanController::class, 'loans'])->name('loans');
 Route::get('/loan/insert', [LoanController::class, 'index'])->name('loan-insert');

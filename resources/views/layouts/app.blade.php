@@ -32,7 +32,8 @@
 	            <a href="#userSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Users</a>
 	            <ul class="collapse list-unstyled" id="userSubmenu">
                     <li>
-                        <a href="#">All Users</a>
+                        <a href="{{ route('register') }}">Add New User</a>
+                        <a href="/users">All Users</a>
                     </li>
 	            </ul>
 	          </li>
@@ -41,6 +42,7 @@
 	            <a href="#loanSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Loans</a>
 	            <ul class="collapse list-unstyled" id="loanSubmenu">
                     <li>
+                        <a href="{{ route('loan-insert') }}">Add New Loan</a>
                         <a href="/loans">All Loans</a>
                     </li>
 	            </ul>
@@ -80,12 +82,6 @@
                     @if (Route::has('login'))
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                        </li>
-                    @endif
-
-                    @if (Route::has('register'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
                     @endif
                 @else
