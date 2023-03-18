@@ -33,7 +33,9 @@ class LoanController extends Controller
 
     public function loans(){
         $loans = Loan::with('user:id,name')->get();
-        
+        foreach($loans as $loan){
+            $loan['total_payable'] = $loan['amount'] + ($loan['amount'] * $loan['interest_rate'] / 100);
+        }
         return view('loans.loans', [ 'loans' => $loans ]);
     }
 

@@ -15,6 +15,7 @@
                             <th>Amount</th>
                             <th>Interest Rate</th>
                             <th>Frequency</th>
+                            <th>Total Payable</th>
                             <th>Starting Date</th>
                             <th>Action</th>
                         </tr>
@@ -24,6 +25,7 @@
                             <th>{{$loan['amount']}}</th>
                             <th>{{$loan['interest_rate']}}</th>
                             <th>{{$loan['frequency']}}</th>
+                            <th>{{  $loan['total_payable'] }}</th>
                             <th>{{$loan['start_date']}}</th>                
                             <th>
                                 <a href={{"loan/edit/".$loan['id']}}>EDIT</a>
